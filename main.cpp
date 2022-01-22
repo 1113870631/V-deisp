@@ -3,25 +3,9 @@
 #include <opencv2/opencv.hpp>
 #include </usr/include/opencv2/calib3d/calib3d_c.h>
 #include "omp.h"
+#include <vector>
 
-  /**
-     * @brief 
-     * sgbm->setPreFilterCap(32);
-    int SADWindowSize = 9;
-    int sgbmWinSize = SADWindowSize > 0 ? SADWindowSize : 3;
-    sgbm->setBlockSize(sgbmWinSize);
-    int cn = grayLeft.channels();
-    sgbm->setP1(8 * cn*sgbmWinSize*sgbmWinSize);
-    sgbm->setP2(32 * cn*sgbmWinSize*sgbmWinSize);
-    sgbm->setMinDisparity(0);  最小视差值。
-    //sgbm->setNumDisparities(16);  最大视差减最小
-    sgbm->setUniquenessRatio(10);uniquenessRatio 最佳（最小）计算成本函数值应该“赢”第二个最佳值以考虑找到的匹配正确的百分比保证金。通常，5-15范围内的值就足够了。
-    sgbm->setSpeckleWindowSize(100);平滑视差区域的最大尺寸，以考虑其噪声斑点和无效。将其设置为0可禁用斑点过滤。否则，将其设置在50-200的范围内
-    sgbm->setSpeckleRange(32);每个连接组件内的最大视差变化。如果你做斑点过滤，将参数设置为正值，它将被隐式乘以16.通常，1或2就足够好了。
-    preFilterCap 预滤波图像像素的截断值
-    sgbm->setDisp12MaxDiff(1);左右视差允许最大差异
-      sgbm->setMode(cv::StereoSGBM::MODE_SGBM);mode 将其设置为StereoSGBM :: MODE_HH以运行全尺寸双通道动态编程算法。它将消耗O（W * H * numDisparities）字节，这对640x480立体声很大，对于HD尺寸的图片很大。默认情况下，它被设置为false。
-     */
+
 using namespace std;
 using namespace cv;
 int   setNumDisparities=1;//最大视差
@@ -79,8 +63,90 @@ void computeVDisparity(cv::Mat &VdispMap,cv::Mat disp)
     }
 }
 
+
+class one_k_clss_line
+{
+    public:
+    double k_present;
+    vector<cv::Vec4f>line_point_data;
+};
+
+class    lines_zoom
+{
+    public:
+    vector<one_k_clss_line>k_class;
+};
+
+
+/**
+ * @brief 
+ * 直线聚合
+ * 
+ * @param img 
+ */
+
+    void  line_zoom(vector<Vec4f>plines,double k_dis,double d_dis)
+    {
+           lines_zoom  zoom1;
+
+            for (size_t i = 0; i < plines.size(); i++)//遍历所有直线
+                {
+                    cv::Vec4i line = plines[i];
+                  
+                     double tmp_k=0;
+                     //得到tmp_k
+                     if((line[2]-line[0])==0)
+                     {
+                         tmp_k=999;
+                     }
+                     else{
+                          tmp_k=((line[3]-line[1])/(line[2]-line[0]));
+                     }
+                    //判断是不是第一次
+                    if(i==0)
+                    {
+                        one_k_clss_line one;
+                        one.k_present=tmp_k;  
+                        Vec4f data=line;
+                        one.line_point_data.push_back(data);    
+                        zoom1.k_class.push_back(one);
+                    }
+                    else{//不是第一次
+                          //遍历k_present 判断k是不是在已有的k范围内
+                          std::vector<one_k_clss_line>::iterator it;
+                          for(it=zoom1.k_class.begin();it!=zoom1.k_class.end();it++)
+                          {
+                              if( tmp_k-(*it).k_present<k_dis&&tmp_k-(*it).k_present>-k_dis )
+                              {//在it 的k范围内
+                                  (*it).line_point_data.push_back(line);
+                               //跳出遍历k_preset 的循环
+                                break;
+                              }                            
+                          }
+                          //检查it 是否的等于 end   如果不等于就算找到了相匹配的k  如果 等于就是没有找到相匹配的k
+                          if(it==zoom1.k_class.end())
+                          {
+                              //没有符合的k范围
+                              one_k_clss_line one;
+                              one.k_present=tmp_k;
+                              one.line_point_data.push_back(line);
+                              zoom1.k_class.push_back(one);                         
+                          }
+                    }
+                 }
+
+            std::vector<one_k_clss_line>::iterator it;
+            for(it=zoom1.k_class.begin();it!=zoom1.k_class.end();it++)
+            {
+                cout<<(*it).k_present<<endl;
+            }
+    }
+
+
 void MethodOne(Mat img)
 {
+    double distance;
+    Vec4f end_point=0;
 	// 第一步：转化为灰度图像
 	Mat grayImg=img;
 	//cvtColor(img, grayImg, COLOR_BGR2GRAY);
@@ -93,47 +159,30 @@ void MethodOne(Mat img)
 
 	// 第四步：霍夫直线检测
    vector<Vec4f>plines;
-	HoughLinesP(grayImg, plines, 1, CV_PI/180 , 80,100, 20);
+	HoughLinesP(grayImg, plines, 1, CV_PI/180 , 30,100, 100);
 	Mat dst = img.clone();
+    Mat dst2(dst.rows,dst.cols,CV_8UC1,255);
+    //cv::cvColor(dst2,dst2,COLOR_GRAY2BGR);
    // dst.convertTo(dst,CV_8UC3);
-    cvtColor(dst,dst,COLOR_BayerBG2BGR);
-   Mat line3;
-   int j=0;
-	for (size_t i = 0; i < plines.size(); i++)
-	{
-		Vec4f hline = plines[i];
-   
-           
-            double tmpy=0,tmpx=0;
-            if((hline[3]- hline[1])<0)
-            {
-                tmpy=-(hline[3]- hline[1]);
-            }
-            else{
-                     tmpy=(hline[3]- hline[1]);
-            }
-              if((hline[2]- hline[0])<0)
-            {
-                tmpx=-(hline[2]- hline[0]);
-            }
-            else{
-                     tmpx=(hline[2]- hline[0]);
-            }
-             double tmp=(tmpy/tmpx);
-            //cout<<tmpy<<endl;
-            if(tmp<5){
-                     line(dst, Point(hline[0], hline[1]), Point(hline[2], hline[3]), Scalar(0,0,255), 1, LINE_AA);
-                     double distance =(hline[3]- hline[1])*(hline[3]- hline[1])+(hline[2]- hline[0])*(hline[2]- hline[0]);
-                     j++;
-                     cout<<j<<endl;
-            }
-           
-        
-		
-	}
+   cvtColor(dst2,dst2,COLOR_GRAY2BGR);
+   line_zoom( plines , 10, 0);
+   int q=0;
+   for (size_t p = 0; p < plines.size(); p++)
+    {
+        cv::Vec4i linex = plines[p];
+        int dx=linex[2]-linex[0];
+        int dy=linex[2]-linex[1];
+      
+    
+        line(dst2, cv::Point(linex[0], linex[1]), cv::Point(linex[2], linex[3]), cv::Scalar(0, 0, 255), 2);
+        q++;
+    
+    }
 
-    namedWindow("1",WINDOW_FREERATIO);
-	imshow("1", dst);
+
+	namedWindow("1",WINDOW_FREERATIO);
+	imshow("1", dst2);
+    
 }
 
 
@@ -146,29 +195,29 @@ int main()
   Mat disp;
 
   disp=imread("../disp.png");
-  //line(disp, Point(0,0), Point(disp.cols,disp.rows), Scalar(255,0,0), 10, LINE_AA);
-  //imshow("line",disp);
 
   cvtColor(disp,disp,COLOR_BGR2GRAY);
   disp.convertTo(disp,CV_8UC1);
 
   cv::minMaxIdx 	( disp,&min,&max,&x,&y,noArray() ) ;
-  cout<<max<<"\n";
   cv::Mat UdispMap=cv::Mat(max,disp.cols,CV_16UC1);
   cv::Mat VdispMap=cv::Mat(disp.rows,max,CV_16UC1);
   computeUDisparity(UdispMap,disp);
   computeVDisparity(VdispMap, disp);
   UdispMap.convertTo(UdispMap,CV_8UC1);
    VdispMap.convertTo(VdispMap,CV_8UC1);
-  //namedWindow("win",WINDOW_FREERATIO);
-  //imshow("win",UdispMap);
- //namedWindow("v",WINDOW_FREERATIO);
-//imshow("v",VdispMap);
-    MethodOne(VdispMap );
- 
-
-
-  waitKey(0);
+//v图二值化
+  threshold(VdispMap,VdispMap,200,255,THRESH_BINARY);
+  //滤波
+ //boxFilter( VdispMap, VdispMap,-1, Size(5,5),  Point(-1,-1),true,BORDER_DEFAULT );
+ //medianBlur(VdispMap, VdispMap, 3 );
+  namedWindow("u",WINDOW_FREERATIO);
+  imshow("u",UdispMap);
+ namedWindow("v",WINDOW_FREERATIO);
+imshow("v",VdispMap);
+MethodOne(VdispMap);
+//line_zoom( plines , 0.5, 0, 100);
+waitKey(0);
 
   return 0;
 }

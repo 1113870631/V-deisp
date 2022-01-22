@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jan 20 15:18:45 2022
+# Make data base, printed on Sat Jan 22 11:39:15 2022
 
 # Variables
 
@@ -26,6 +26,8 @@ XDG_SESSION_TYPE = x11
 VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
+# environment
+IM_CONFIG_PHASE = 2
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
@@ -41,11 +43,9 @@ SHELL = /bin/sh
 # makefile (from 'Makefile', line 54)
 RM = /usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -E rm -f
 # environment
-VTE_VERSION = 5202
-# environment
 VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"85dc8b33bfa057e31dfd84e9a10f67e1.zh-cn","_translationsConfigFile":"/home/ww/.config/Code/clp/85dc8b33bfa057e31dfd84e9a10f67e1.zh-cn/tcf.json","_cacheRoot":"/home/ww/.config/Code/clp/85dc8b33bfa057e31dfd84e9a10f67e1.zh-cn","_resolvedLanguagePackCoreLocation":"/home/ww/.config/Code/clp/85dc8b33bfa057e31dfd84e9a10f67e1.zh-cn/899d46d82c4c95423fb7e10e68eba52050e30ba3","_corruptedFile":"/home/ww/.config/Code/clp/85dc8b33bfa057e31dfd84e9a10f67e1.zh-cn/corrupted.info","_languagePackSupport":true}
 # environment
-_ = /usr/bin/code
+_ = /usr/share/code/code
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 63)
@@ -55,7 +55,7 @@ MAKEFILE_LIST :=  Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-IM_CONFIG_PHASE = 2
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # environment
 USERNAME = ww
 # environment
@@ -75,9 +75,9 @@ MAKESILENT = -s
 # environment
 ROS_PYTHON_VERSION = 2
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-61c7c90c-94b4-4850-a53f-5b41607c0132.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-0f81f3ab-c408-4bdf-867d-1c068544a9f1.sock
 # environment
-VSCODE_CWD = /home/ww/opencv/U_test
+VSCODE_CWD = /home/ww
 # environment
 CLUTTER_IM_MODULE = xim
 # default
@@ -91,7 +91,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = exfxcxdxbxbxbxbxbxbxbx
 # environment
-SESSION_MANAGER = local/ww:@/tmp/.ICE-unix/2388,unix/ww:/tmp/.ICE-unix/2388
+SESSION_MANAGER = local/ww:@/tmp/.ICE-unix/2370,unix/ww:/tmp/.ICE-unix/2370
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -107,8 +107,6 @@ VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
-ELECTRON_NO_ATTACH_CONSOLE = 1
-# environment
 CMAKE_PREFIX_PATH = /opt/ros/melodic
 # environment
 LS_COLORS = di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=31;40:cd=31;40:su=31;40:sg=31;40:tw=31;40:ow=31;40:
@@ -116,6 +114,8 @@ LS_COLORS = di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=31;40:cd=31;40:su=31
 ROS_DISTRO = melodic
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3033
 # automatic
 %F = $(notdir $%)
 # environment
@@ -129,7 +129,7 @@ PWD = /home/ww/opencv/U_test
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 2465
+SSH_AGENT_PID = 2447
 # environment
 PKG_CONFIG_PATH = /opt/ros/melodic/lib/pkgconfig
 # environment
@@ -142,8 +142,6 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProce
 HOME = /home/ww
 # environment
 LD_LIBRARY_PATH = /opt/ros/melodic/lib
-# environment
-VSCODE_CLI = 1
 # environment
 VSCODE_CODE_CACHE_PATH = /home/ww/.config/Code/CachedData/899d46d82c4c95423fb7e10e68eba52050e30ba3
 # environment
@@ -166,8 +164,6 @@ GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 XDG_VTNR = 2
 # environment
 MAKELEVEL := 0
-# environment
-COLORTERM = truecolor
 # default
 MAKE = $(MAKE_COMMAND)
 # default
@@ -175,7 +171,7 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SHLVL = 1
+SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
@@ -195,7 +191,7 @@ LESS = -R
 # default
 MAKE_COMMAND := make
 # environment
-OLDPWD = /home/ww/opencv
+OLDPWD = /home/ww
 # default
 .VARIABLES := 
 # automatic
@@ -240,14 +236,12 @@ PAGER = less
 LC_ALL = C
 # environment
 QT4_IM_MODULE = xim
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # makefile (from 'Makefile', line 51)
 CMAKE_COMMAND = /usr/share/cmake-3.22.1-linux-x86_64/bin/cmake
-# environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/ed4d1952_dee5_4f74_8d01_05f766a15cbf
 # automatic
 ^F = $(notdir $^)
-# environment
-GNOME_TERMINAL_SERVICE = :1.73
 # default
 SUFFIXES := 
 # environment
@@ -258,6 +252,8 @@ WINDOWPATH = 2
 ROSLISP_PACKAGE_DIRECTORIES = 
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+GJS_DEBUG_OUTPUT = stderr
 # default
 .RECIPEPREFIX := 
 # environment
@@ -265,11 +261,9 @@ AUTOJUMP_ERROR_PATH = /home/ww/.local/share/autojump/errors.log
 # environment
 LANG = C
 # environment
-TERM = xterm-256color
-# environment
-VSCODE_PID = 3585
+VSCODE_PID = 3033
 # variable set hash-table stats:
-# Load=129/1024=13%, Rehash=0, Collisions=21/163=13%
+# Load=126/1024=12%, Rehash=0, Collisions=19/160=12%
 
 # Pattern-specific Variable Values
 
@@ -278,12 +272,12 @@ VSCODE_PID = 3585
 # Directories
 
 # SCCS: could not be stat'd.
- 
-# . (device 66310, inode 1551402): 19 files, no impossibilities.
+# . (device 66310, inode 1551402): 21 files, no impossibilities.
 # RCS: could not be stat'd.
 
-# 19 files, no impossibilities in 3 directories.
+# 21 files, no impossibilities in 3 directories.
 
+ 
 # Implicit Rules
 
 %: %,v
@@ -559,8 +553,8 @@ ExperimentalBuild: cmake_check_build_system
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
- 
 #  recipe to execute (from 'Makefile', line 349):
+ 
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ExperimentalBuild
 
 main.cpp.o:
@@ -1072,12 +1066,12 @@ rebuild_cache:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 120 / storage = 1778 B / avg = 14 B
-# current buf: size = 8162 B / used = 1778 B / count = 120 / avg = 14 B
+# strcache buffers: 1 (0) / strings = 122 / storage = 1790 B / avg = 14 B
+# current buf: size = 8162 B / used = 1790 B / count = 122 / avg = 14 B
 
-# strcache performance: lookups = 513 / hit rate = 76%
+# strcache performance: lookups = 515 / hit rate = 76%
 # hash-table stats:
-# Load=120/8192=1%, Rehash=0, Collisions=13/513=3%
-# Finished Make data base on Thu Jan 20 15:18:45 2022
+# Load=122/8192=1%, Rehash=0, Collisions=13/515=3%
+# Finished Make data base on Sat Jan 22 11:39:16 2022
 
  
