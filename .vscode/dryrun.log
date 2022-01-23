@@ -1,4 +1,4 @@
-make --dry-run --always-make --keep-going --print-directory
+make all --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/ww/opencv/U_test'
 /usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -S/home/ww/opencv/U_test -B/home/ww/opencv/U_test --check-build-system CMakeFiles/Makefile.cmake 0
 /usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -E cmake_progress_start /home/ww/opencv/U_test/CMakeFiles /home/ww/opencv/U_test//CMakeFiles/progress.marks

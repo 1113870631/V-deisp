@@ -1,5 +1,6 @@
-CMakeFiles/U_test.dir/main.cpp.o: /home/ww/opencv/U_test/main.cpp \
- /usr/include/stdc-predef.h /usr/include/c++/7/iostream \
+CMakeFiles/U_test.dir/line_zoom.cpp.o: \
+ /home/ww/opencv/U_test/line_zoom.cpp /usr/include/stdc-predef.h \
+ /usr/include/c++/7/iostream \
  /usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/os_defines.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -314,8 +315,4 @@ CMakeFiles/U_test.dir/main.cpp.o: /home/ww/opencv/U_test/main.cpp \
  /usr/local/include/opencv4/opencv2/video.hpp \
  /usr/local/include/opencv4/opencv2/video/tracking.hpp \
  /usr/local/include/opencv4/opencv2/video/background_segm.hpp \
- /usr/include/opencv2/calib3d/calib3d_c.h \
- /usr/local/include/opencv4/opencv2/core/core_c.h \
- /usr/local/include/opencv4/opencv2/core/types_c.h \
- /usr/lib/gcc/x86_64-linux-gnu/7/include/omp.h \
- /home/ww/opencv/U_test/U_V.h /home/ww/opencv/U_test/line_zoom.h
+ /home/ww/opencv/U_test/line_zoom.h

@@ -523,6 +523,54 @@ U_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/build
 .PHONY : U_test/fast
 
+U_V.o: U_V.cpp.o
+.PHONY : U_V.o
+
+# target to build an object file
+U_V.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/U_V.cpp.o
+.PHONY : U_V.cpp.o
+
+U_V.i: U_V.cpp.i
+.PHONY : U_V.i
+
+# target to preprocess a source file
+U_V.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/U_V.cpp.i
+.PHONY : U_V.cpp.i
+
+U_V.s: U_V.cpp.s
+.PHONY : U_V.s
+
+# target to generate assembly for a file
+U_V.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/U_V.cpp.s
+.PHONY : U_V.cpp.s
+
+line_zoom.o: line_zoom.cpp.o
+.PHONY : line_zoom.o
+
+# target to build an object file
+line_zoom.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/line_zoom.cpp.o
+.PHONY : line_zoom.cpp.o
+
+line_zoom.i: line_zoom.cpp.i
+.PHONY : line_zoom.i
+
+# target to preprocess a source file
+line_zoom.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/line_zoom.cpp.i
+.PHONY : line_zoom.cpp.i
+
+line_zoom.s: line_zoom.cpp.s
+.PHONY : line_zoom.s
+
+# target to generate assembly for a file
+line_zoom.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/line_zoom.cpp.s
+.PHONY : line_zoom.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -587,6 +635,12 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... U_test"
+	@echo "... U_V.o"
+	@echo "... U_V.i"
+	@echo "... U_V.s"
+	@echo "... line_zoom.o"
+	@echo "... line_zoom.i"
+	@echo "... line_zoom.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
