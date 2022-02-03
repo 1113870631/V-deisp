@@ -26,7 +26,7 @@ int main()
   int x,y;
   Mat disp;
 
-  disp=imread("../22.png");
+  disp=imread("../disp.png");
 
   cvtColor(disp,disp,COLOR_BGR2GRAY);
   disp.convertTo(disp,CV_8UC1);

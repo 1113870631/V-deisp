@@ -11,13 +11,18 @@ using namespace std;
 
 
 
+//相同斜率的 类
 class one_k_clss_line
 {
     public:
-    double k_present;
+    double dis_preset;
+    double  k_present;  
     vector<cv::Vec4f>line_point_data;
 };
 
+
+
+//直线聚合类
 class    lines_zoom
 {
     public:
