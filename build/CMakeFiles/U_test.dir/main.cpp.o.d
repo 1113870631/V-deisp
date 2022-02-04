@@ -318,4 +318,5 @@ CMakeFiles/U_test.dir/main.cpp.o: /home/ww/opencv/U_test/main.cpp \
  /usr/local/include/opencv4/opencv2/core/core_c.h \
  /usr/local/include/opencv4/opencv2/core/types_c.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include/omp.h \
- /home/ww/opencv/U_test/U_V.h /home/ww/opencv/U_test/line_zoom.h
+ /home/ww/opencv/U_test/U_V.h /home/ww/opencv/U_test/line_zoom.h \
+ /home/ww/opencv/U_test/ground_ex.h

@@ -1,5 +1,5 @@
-#ifndef _LINE_ZOOM_H_
-#define _LINE_ZOOM_H_
+#ifndef __LINE_ZOOM_H__
+#define __LINE_ZOOM_H__
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include "line_zoom.h"
@@ -9,8 +9,6 @@
 using namespace cv;
 using namespace std;
 
-
-
 //相同斜率的 类
 class one_k_clss_line
 {
@@ -19,9 +17,6 @@ class one_k_clss_line
     double  k_present;  
     vector<cv::Vec4f>line_point_data;
 };
-
-
-
 //直线聚合类
 class    lines_zoom
 {
@@ -29,10 +24,7 @@ class    lines_zoom
     vector<one_k_clss_line>k_class;
 };
 
-
  lines_zoom *  line_zoom(vector<Vec4f>plines,double k_dis,double d_dis);
-void MethodOne(Mat img);
-
-
+ lines_zoom *  MethodOne(Mat img);
 
 #endif // !_LINE_ZOOM_H_

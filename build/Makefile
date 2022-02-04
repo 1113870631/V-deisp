@@ -547,6 +547,30 @@ U_V.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/U_V.cpp.s
 .PHONY : U_V.cpp.s
 
+ground_ex.o: ground_ex.cpp.o
+.PHONY : ground_ex.o
+
+# target to build an object file
+ground_ex.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/ground_ex.cpp.o
+.PHONY : ground_ex.cpp.o
+
+ground_ex.i: ground_ex.cpp.i
+.PHONY : ground_ex.i
+
+# target to preprocess a source file
+ground_ex.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/ground_ex.cpp.i
+.PHONY : ground_ex.cpp.i
+
+ground_ex.s: ground_ex.cpp.s
+.PHONY : ground_ex.s
+
+# target to generate assembly for a file
+ground_ex.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/ground_ex.cpp.s
+.PHONY : ground_ex.cpp.s
+
 line_zoom.o: line_zoom.cpp.o
 .PHONY : line_zoom.o
 
@@ -638,6 +662,9 @@ help:
 	@echo "... U_V.o"
 	@echo "... U_V.i"
 	@echo "... U_V.s"
+	@echo "... ground_ex.o"
+	@echo "... ground_ex.i"
+	@echo "... ground_ex.s"
 	@echo "... line_zoom.o"
 	@echo "... line_zoom.i"
 	@echo "... line_zoom.s"

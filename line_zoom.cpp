@@ -200,7 +200,7 @@
  * 直线检测
  * @param img 
  */
-void MethodOne(Mat img)//输入v 视图
+lines_zoom *  MethodOne(Mat img)//输入v 视图
 {
     double distance;
     Vec4f end_point=0;
@@ -251,13 +251,13 @@ void MethodOne(Mat img)//输入v 视图
   vector<one_k_clss_line>::iterator it;
   for(it=zoom->k_class.begin();it!=zoom->k_class.end();it++)
   {
-      if((*it).k_present<9999)
+      if((*it).k_present<999999)
       {
           vector<Vec4f>::iterator it2;
           it2=(*it).line_point_data.begin();  
           cv::Vec4i line_point = *it2;
-          cout<<"k:"<<(*it).k_present<<endl;
-          cout<<"d:"<<(*it).dis_preset<<endl;
+          //cout<<"k:"<<(*it).k_present<<endl;
+          //cout<<"d:"<<(*it).dis_preset<<endl;
           cout<<cv::Point(line_point[0],line_point[1])<<cv::Point(line_point[2],line_point[3])<<endl;
           line(dst3,cv::Point(line_point[0],line_point[1]),cv::Point(line_point[2],line_point[3]), cv::Scalar(255, 0, 0), 2);
       }
@@ -265,5 +265,5 @@ void MethodOne(Mat img)//输入v 视图
 	namedWindow("1",WINDOW_FREERATIO);
     //显示聚合后的结果
 	imshow("1", dst3);
-    
+    return zoom;
 }

@@ -4,6 +4,7 @@
 #include "omp.h"
 #include "U_V.h"
 #include "line_zoom.h"
+#include "ground_ex.h"
 
 using namespace std;
 using namespace cv;
@@ -18,7 +19,7 @@ int   setUniquenessRatio,setSpeckleWindowSize,setSpeckleRange,setDisp12MaxDiff,p
   Mat im3   = Mat(im1.rows, im1.cols, CV_16S);
 
   cv::Ptr<cv::StereoSGBM> sgbm= cv::StereoSGBM::create(0,9, setblock);
-
+  lines_zoom * zoom=NULL;
 int main()
 {
 
@@ -26,7 +27,7 @@ int main()
   int x,y;
   Mat disp;
 
-  disp=imread("../disp.png");
+  disp=imread("../22.png");
 
   cvtColor(disp,disp,COLOR_BGR2GRAY);
   disp.convertTo(disp,CV_8UC1);
@@ -48,7 +49,12 @@ int main()
  namedWindow("v",WINDOW_FREERATIO);
  imshow("v",VdispMap);
  //直线检测 直线聚合
- MethodOne(VdispMap);
+ zoom = MethodOne(VdispMap);
+  if(zoom==NULL)
+  {
+    cout<<"聚合失败"<<endl;
+  }
+ ground_ex(zoom,VdispMap);
  waitKey(0);
 
   return 0;
