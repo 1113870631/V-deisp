@@ -7,7 +7,7 @@
 using namespace   std;
 using namespace   cv;
 
-void ground_ex(lines_zoom * zoom,Mat v)
+void ground_ex(lines_zoom * zoom,Mat v   ,Mat  disp)
 {
     double tmp_dis=0;
     int tmp_num=0;
@@ -16,6 +16,7 @@ void ground_ex(lines_zoom * zoom,Mat v)
     vector<one_k_clss_line>::iterator it;
     vector<one_k_clss_line>::iterator it_end;
     vector<Vec4f>::iterator it_4f;
+    disp.convertTo(disp,CV_8UC1);
   for(it=zoom->k_class.begin();it!=zoom->k_class.end();it++)
   {//遍历所有k_class 
       if((*it).k_present<5)
@@ -45,12 +46,63 @@ void ground_ex(lines_zoom * zoom,Mat v)
           //更新tmp_num
           tmp_num++;
      }   
-  }
-    
+  } 
     namedWindow("ground",WINDOW_FREERATIO);
     imshow("ground",dst3);
+
+    //得到目标 直线点
     it_4f = it_end->line_point_data.begin();
     cout<<*it_4f<<endl;
+    //得到y=kx+b
+    double tmp_k=((*it_4f)[3]-(*it_4f)[1])/((*it_4f)[2]-(*it_4f)[0]);
+    // y=kx+b   b=y-kx
+    double tmp_b=(*it_4f)[3]-tmp_k*(*it_4f)[2];
+
+    /*遍历图像 
+     * 寻找符合y=kx+b 的点
+     * y表示视差 x 表示 v 坐标  
+     *                                             
+     *                                              *
+     *                                              *
+     *                    **************************      -mid_rows
+     *                    *                        *                          *
+     *        * *****************************************      U
+     *                    *                        *                          *
+     *                    ***************************   mid_rows
+     *                                                *
+     *                                                *
+     *                                                *    V
+     * 已知 V 和视差  按 V 坐标方向 寻找符合视差的点
+     */                       
+
+
+    //1 寻找视差图中心坐标
+    int mid_rows=disp.rows/2;
+    int min_cols=disp.cols/2;
+    for(int tmp_v=0;tmp_v<disp.rows;tmp_v++)
+    {
+
+              
+         if(tmp_v<(*it_4f)[3]&&tmp_v>(*it_4f)[1])
+         {
+                    //计算目标视差
+                double tmp_disp=(tmp_v-tmp_b)/tmp_k;
+                //遍历这一行 寻找符合该视差的点
+                for(int tmp_U=0;tmp_U<disp.cols;tmp_U++)
+                {
+                    uchar *data = disp.ptr<uchar>(tmp_v, tmp_U);
+                    if((int)(*data)-tmp_disp<10&&(int)(*data)-tmp_disp>-10)
+                    *data=0;
+                    //cout<<(int)*data<<endl;
+                
+                }
+        }
+       
+
+    }
+    imshow("disp",disp);
+
+
     
 
 

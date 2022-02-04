@@ -54,7 +54,7 @@ int main()
   {
     cout<<"聚合失败"<<endl;
   }
- ground_ex(zoom,VdispMap);
+ ground_ex(zoom,VdispMap,disp);
  waitKey(0);
 
   return 0;

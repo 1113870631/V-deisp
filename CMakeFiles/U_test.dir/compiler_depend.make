@@ -1147,8 +1147,11 @@ CMakeFiles/U_test.dir/main.cpp.o: main.cpp \
   /usr/local/include/opencv4/opencv2/core/types_c.h \
   /usr/lib/gcc/x86_64-linux-gnu/7/include/omp.h \
   U_V.h \
-  line_zoom.h
+  line_zoom.h \
+  ground_ex.h
 
+
+ground_ex.h:
 
 main.cpp:
 
