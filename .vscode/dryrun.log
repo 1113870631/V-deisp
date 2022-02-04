@@ -12,11 +12,14 @@ make -s -f CMakeFiles/U_test.dir/build.make CMakeFiles/U_test.dir/build
 make[2]: Entering directory '/home/ww/opencv/U_test'
 /usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -E cmake_echo_color --switch= --green --progress-dir=/home/ww/opencv/U_test/CMakeFiles --progress-num=1 "Building CXX object CMakeFiles/U_test.dir/main.cpp.o"
 /usr/bin/c++  -isystem /usr/local/include/opencv4  -MD -MT CMakeFiles/U_test.dir/main.cpp.o -MF CMakeFiles/U_test.dir/main.cpp.o.d -o CMakeFiles/U_test.dir/main.cpp.o -c /home/ww/opencv/U_test/main.cpp
- 
-/usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -E cmake_echo_color --switch= --green --bold --progress-dir=/home/ww/opencv/U_test/CMakeFiles --progress-num=2 "Linking CXX executable U_test"
+/usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -E cmake_echo_color --switch= --green --progress-dir=/home/ww/opencv/U_test/CMakeFiles --progress-num=2 "Building CXX object CMakeFiles/U_test.dir/U_V.cpp.o"
+/usr/bin/c++  -isystem /usr/local/include/opencv4  -MD -MT CMakeFiles/U_test.dir/U_V.cpp.o -MF CMakeFiles/U_test.dir/U_V.cpp.o.d -o CMakeFiles/U_test.dir/U_V.cpp.o -c /home/ww/opencv/U_test/U_V.cpp
+/usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -E cmake_echo_color --switch= --green --progress-dir=/home/ww/opencv/U_test/CMakeFiles --progress-num=3 "Building CXX object CMakeFiles/U_test.dir/line_zoom.cpp.o"
+/usr/bin/c++  -isystem /usr/local/include/opencv4  -MD -MT CMakeFiles/U_test.dir/line_zoom.cpp.o -MF CMakeFiles/U_test.dir/line_zoom.cpp.o.d -o CMakeFiles/U_test.dir/line_zoom.cpp.o -c /home/ww/opencv/U_test/line_zoom.cpp
+/usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -E cmake_echo_color --switch= --green --bold --progress-dir=/home/ww/opencv/U_test/CMakeFiles --progress-num=4 "Linking CXX executable U_test"
 /usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/U_test.dir/link.txt --verbose=
 make[2]: Leaving directory '/home/ww/opencv/U_test'
-/usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -E cmake_echo_color --switch= --progress-dir=/home/ww/opencv/U_test/CMakeFiles --progress-num=1,2 "Built target U_test"
+/usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -E cmake_echo_color --switch= --progress-dir=/home/ww/opencv/U_test/CMakeFiles --progress-num=1,2,3,4 "Built target U_test"
 make[1]: Leaving directory '/home/ww/opencv/U_test'
 /usr/share/cmake-3.22.1-linux-x86_64/bin/cmake -E cmake_progress_start /home/ww/opencv/U_test/CMakeFiles 0
 make: Leaving directory '/home/ww/opencv/U_test'
